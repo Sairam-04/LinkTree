@@ -99,8 +99,10 @@ app.post('/add-link', middleware, async (req, res) => {
 
 app.get("/get-links", async (req, res) => {
     try {
-        const { username } = req.body;
+        const username = req.query.username;
+        console.log("username.......--", req);
         const exist = await User.findOne({ username })
+
         if (!exist) {
             return res.status(400).send("User Doesn't Exist");
         }
