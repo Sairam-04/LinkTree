@@ -1,5 +1,7 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:1200";
+const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URI;
+
+
 
 const fetchAllLinks = (username) => {
   const uri = `${BASE_URL}/get-links`;
