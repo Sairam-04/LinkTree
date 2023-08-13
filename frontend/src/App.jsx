@@ -1,14 +1,31 @@
-import { useState } from 'react'
-import './App.css'
+import { useEffect } from "react";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllLinks } from "./store/reducers/linksSlice";
+import { CircularProgress } from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+
+  const allLinks = useSelector((state) => state.links.links.data);
+
+  useEffect(() => {
+    dispatch(
+      getAllLinks({
+        username: "Sairam",
+      })
+    );
+  });
 
   return (
     <>
-      <h1 className='text-red-400'>Started</h1>
+      {allLinks.length ? (
+        allLinks.map((item) => <li>{JSON.stringify(item)}</li>)
+      ) : (
+        <CircularProgress />
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
