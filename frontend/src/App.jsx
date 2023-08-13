@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       {allLinks.length ? (
-        allLinks.map((item) => <li>{JSON.stringify(item)}</li>)
+        allLinks.map((item, index) => <li key={index}>{JSON.stringify(item)}</li>)
       ) : (
         <CircularProgress />
       )}
